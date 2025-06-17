@@ -33,17 +33,6 @@ You can read the code directly, or run it locally for hands-on learning.
 - TypeScript installed globally:
   ```bash
   npm install -g typescript
-
-## ⚙️ How to Run Locally
-
-You can read the code directly, or run it locally for hands-on learning.
-
-### ✅ Prerequisites
-
-- Node.js installed 👉 [Download here](https://nodejs.org/)
-- TypeScript installed globally:
-  ```bash
-  npm install -g typescript
 ````
 
 ### ▶️ Run a File
