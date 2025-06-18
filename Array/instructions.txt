@@ -1,0 +1,164 @@
+=====================
+ARRAYS IN TYPESCRIPT
+=====================
+
+=====================
+1. INTRODUCTION
+=====================
+An array in TypeScript is a data structure that stores multiple values of the same type in a single variable.
+
+Syntax:
+-------
+let arr: type[] = [val1, val2, val3];
+
+OR
+
+let arr: Array<type> = [val1, val2, val3];
+
+=====================
+2. DECLARING ARRAYS
+=====================
+
+Method 1 – Using square brackets:
+----------------------------------
+let numbers: number[] = [1, 2, 3, 4];
+
+Method 2 – Using generic Array type:
+------------------------------------
+let names: Array<string> = ["Ali", "Waseem", "Sara"];
+
+Both are valid and work the same.
+
+========================
+3. COMMON ARRAY TYPES
+========================
+
+- number[] – array of numbers
+- string[] – array of strings
+- boolean[] – array of booleans
+- any[] – array with mixed types (not recommended for strict typing)
+
+Example:
+--------
+let mixed: any[] = [1, "hello", true];
+
+==============================
+4. ARRAY METHODS (BUILT-IN)
+==============================
+
+- push()     → Adds item to end
+- pop()      → Removes last item
+- shift()    → Removes first item
+- unshift()  → Adds item to start
+- concat()   → Merges arrays
+- slice()    → Returns a portion
+- splice()   → Adds/removes elements
+- indexOf()  → Finds index
+- includes() → Checks existence
+- map(), filter(), reduce() → Iterates and transforms data
+
+Example:
+--------
+let arr: number[] = [10, 20, 30];
+arr.push(40);         // [10, 20, 30, 40]
+arr.pop();            // [10, 20, 30]
+let doubled = arr.map(x => x * 2); // [20, 40, 60]
+
+===============================
+5. LOOPING OVER ARRAYS
+===============================
+
+Using for loop:
+---------------
+for (let i = 0; i < arr.length; i++) {
+  console.log(arr[i]);
+}
+
+Using for...of:
+---------------
+for (let val of arr) {
+  console.log(val);
+}
+
+Using forEach:
+--------------
+arr.forEach(item => console.log(item));
+
+===============================
+6. ARRAY OF OBJECTS
+===============================
+
+let users: { id: number, name: string }[] = [
+  { id: 1, name: "Waseem" },
+  { id: 2, name: "Ali" }
+];
+
+console.log(users[0].name); // Output: Waseem
+
+===============================
+7. MULTI-DIMENSIONAL ARRAYS
+===============================
+
+let matrix: number[][] = [
+  [1, 2],
+  [3, 4],
+  [5, 6]
+];
+
+console.log(matrix[1][0]); // Output: 3
+
+===============================
+8. TYPING WITH INTERFACES
+===============================
+
+interface Product {
+  id: number;
+  name: string;
+}
+
+let products: Product[] = [
+  { id: 101, name: "Pen" },
+  { id: 102, name: "Book" }
+];
+
+===============================
+9. INTERVIEW PRO TIPS
+===============================
+
+✅ Q: What is the difference between `any[]` and `unknown[]`?
+A: `any[]` allows any operations without checks. `unknown[]` requires type-checking before use.
+
+✅ Q: How do you ensure type safety in arrays?
+A: Use typed arrays like `string[]`, `number[]`, or use interfaces.
+
+✅ Q: Can an array hold multiple types?
+A: Yes, using union types or `any[]`.
+Example: let mixed: (number | string)[] = [1, "two", 3];
+
+✅ Q: What’s the difference between `Array<number>` and `number[]`?
+A: Both are the same in behavior; just different syntax.
+
+✅ Q: Can you use readonly arrays?
+A: Yes. Use `readonly number[]` to make it immutable.
+
+===============================
+10. BEST PRACTICES
+===============================
+
+- Prefer specific types (`string[]` or `User[]`) over `any[]`.
+- Use interfaces for array of objects.
+- Use array methods like `map`, `filter`, and `reduce` for clean and functional code.
+- Use `readonly` modifier for immutable arrays:
+  const nums: readonly number[] = [1, 2, 3];
+
+===============================
+11. CONCLUSION
+===============================
+
+Arrays in TypeScript are powerful and flexible. They allow strong typing while still being easy to use and manipulate.
+
+Understanding how to declare, type, and use arrays effectively is crucial for both real-world coding and technical interviews.
+
+===============================
+END OF NOTES
+===============================
