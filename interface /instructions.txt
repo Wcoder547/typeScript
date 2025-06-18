@@ -1,0 +1,127 @@
+====================================================
+📘 TypeScript: Difference Between Type and Interface
+====================================================
+
+📌 1. Introduction
+
+TypeScript provides both `type` aliases and `interface` to define custom types. While they are often used interchangeably, there are key differences and best use cases.
+
+----------------------------------------------------
+📌 2. Basic Definitions
+
+➡ `interface`:
+- Used to define the structure of an object.
+- Preferred for creating object shapes, especially in OOP or large-scale applications.
+
+➡ `type`:
+- A more flexible way to define types.
+- Can represent not just object shapes, but also primitives, unions, intersections, and more.
+
+----------------------------------------------------
+📌 3. Syntax Examples
+
+// Using interface
+interface Person {
+    name: string;
+    age: number;
+}
+
+// Using type
+type PersonType = {
+    name: string;
+    age: number;
+};
+
+const user1: Person = { name: "Waseem", age: 25 };
+const user2: PersonType = { name: "Malik", age: 30 };
+
+----------------------------------------------------
+📌 4. Key Differences
+
+| Feature                     | `interface`                            | `type`                                      |
+|----------------------------|-----------------------------------------|----------------------------------------------|
+| Extension                  | Supports `extends`                     | Supports intersection `&`                    |
+| Declaration Merging        | ✅ Yes (can redefine/merge)            | ❌ No (redefining causes error)              |
+| Primitives & Unions        | ❌ Not allowed                          | ✅ Supported                                 |
+| Computed Properties        | ❌ Limited                              | ✅ Fully Supported                           |
+| Readability in IDEs        | ✅ More readable in intellisense       | ✅ Also readable, but can get complex        |
+| React Props (convention)   | Commonly used                          | Also accepted                                |
+| Use in OOP                 | Preferred                              | Possible                                     |
+
+----------------------------------------------------
+📌 5. Practical Examples
+
+// Interface extension (inheritance)
+interface Animal {
+    name: string;
+}
+interface Dog extends Animal {
+    bark(): void;
+}
+const myDog: Dog = {
+    name: "Tommy",
+    bark: () => console.log("Woof")
+};
+
+// Type intersection
+type AnimalType = {
+    name: string;
+};
+type DogType = AnimalType & {
+    bark(): void;
+};
+const myDog2: DogType = {
+    name: "Rocky",
+    bark: () => console.log("Woof!")
+};
+
+// Type with union and primitives
+type ID = string | number;
+type Point = { x: number; y: number } | [number, number];
+
+// Interface merging
+interface Box {
+    height: number;
+}
+interface Box {
+    width: number;
+}
+const myBox: Box = { height: 10, width: 20 };
+
+// Type - cannot merge
+type BoxType = {
+    height: number;
+};
+// type BoxType = { width: number }; // ❌ Error: Duplicate identifier
+
+----------------------------------------------------
+📌 6. When to Use What?
+
+✅ Use `interface` when:
+- You're working with object shapes or class-like structures.
+- You need to extend or implement in classes.
+- You want declaration merging.
+
+✅ Use `type` when:
+- You need union, intersection, or conditional types.
+- You're defining more complex types (like function signatures, tuples, or utility types).
+- You don’t need merging.
+
+----------------------------------------------------
+📌 7. Interview Questions You Might Be Asked:
+
+❓ What is the difference between `type` and `interface` in TypeScript?
+❓ Can an interface extend a type? (Yes, using `extends`)
+❓ Can a type extend an interface? (Yes, using intersection `&`)
+❓ Can you merge interfaces? Why is that useful?
+❓ When would you prefer a type over an interface?
+
+----------------------------------------------------
+📌 8. Advanced Tips (Bonus)
+
+✅ Mixed use:
+```ts
+interface Person {
+    name: string;
+}
+type Employee = Person & { id: number };
