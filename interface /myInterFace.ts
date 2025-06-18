@@ -4,7 +4,7 @@ interface user {
   readonly userid: number;
   name: string;
   id: number;
-  google_id?: boolean;
+  google_id?: boolean; //optional
   //   startTrail: () => string;
   startTrail(): string;
   getCoupon(couponName: string): number;

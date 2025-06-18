@@ -1,0 +1,151 @@
+=====================
+TUPLES IN TYPESCRIPT
+=====================
+
+=====================
+1. INTRODUCTION
+=====================
+A tuple in TypeScript is a typed array with a fixed number of elements, where each element can have a different type.
+
+It allows you to express an array with a fixed number of elements whose types are known and need not be the same.
+
+---------------------
+Syntax:
+---------------------
+let tupleName: [type1, type2, ..., typeN] = [value1, value2, ..., valueN];
+
+Example:
+let user: [number, string] = [1, "Waseem"];
+
+=====================
+2. KEY CHARACTERISTICS
+=====================
+- Fixed size: Tuples have a fixed number of elements.
+- Typed: Each element has a known type at a specific index.
+- Order matters: The position determines the type.
+- Useful for returning multiple values from a function with known types.
+
+=====================
+3. DECLARING & USING TUPLES
+=====================
+
+Example 1:
+----------
+let point: [number, number] = [10, 20];
+console.log(point[0]); // Output: 10
+
+Example 2:
+----------
+let employee: [number, string, boolean] = [101, "Alice", true];
+
+Example 3 (with destructuring):
+-------------------------------
+let person: [string, number] = ["John", 30];
+let [name, age] = person;
+console.log(name); // Output: John
+console.log(age);  // Output: 30
+
+=====================
+4. ACCESSING & MODIFYING
+=====================
+
+Accessing:
+----------
+let data: [number, string] = [42, "Answer"];
+console.log(data[1]); // "Answer"
+
+Modifying (only allowed if type remains the same):
+--------------------------------------------------
+data[0] = 50;        // OK
+data[1] = "Updated"; // OK
+
+Invalid:
+--------
+data[0] = "Text"; // ❌ Error: Type 'string' is not assignable to type 'number'
+
+=====================
+5. OPTIONAL ELEMENTS
+=====================
+Tuples can have optional elements using `?`.
+
+Example:
+--------
+let optionalTuple: [string, number?];
+optionalTuple = ["Alice"];
+optionalTuple = ["Alice", 25];
+
+=====================
+6. SPREAD IN TUPLES
+=====================
+TypeScript 4.0+ supports variadic tuples using spread syntax.
+
+Example:
+--------
+type RGB = [number, number, number];
+type RGBA = [...RGB, number];
+
+let color: RGBA = [255, 0, 0, 0.5];
+
+=====================
+7. TUPLE WITH REST ELEMENTS
+=====================
+You can define tuples with a variable number of the same type at the end.
+
+Example:
+--------
+let restTuple: [string, ...number[]] = ["scores", 10, 20, 30];
+
+=====================
+8. USE CASES
+=====================
+
+- Functions that return multiple values:
+----------------------------------------
+function getUser(): [string, number] {
+  return ["Waseem", 25];
+}
+
+const [username, userage] = getUser();
+
+- Representing structured data:
+-------------------------------
+let address: [string, string, number] = ["Street", "City", 12345];
+
+=====================
+9. INTERVIEW PRO TIPS
+=====================
+
+✅ Q: What is the difference between an array and a tuple in TypeScript?
+A: Arrays can contain any number of elements of the same type. Tuples have fixed length and fixed types for each index.
+
+✅ Q: Can tuples be changed?
+A: Elements can be reassigned with the same type unless they are marked `readonly`. However, the size and order are fixed.
+
+✅ Q: Can I use rest parameters in tuples?
+A: Yes, using TypeScript 4.0+, rest elements are allowed in tuples.
+
+✅ Q: Are tuples arrays?
+A: Internally, yes. Tuples are arrays with fixed types and length.
+
+✅ Q: Why use tuples over objects?
+A: Tuples are more lightweight when structure and order are guaranteed. Objects are better for descriptive keys.
+
+=====================
+10. BEST PRACTICES
+=====================
+- Use tuples when order and fixed size matter.
+- Prefer objects for descriptive or large data.
+- Use tuple destructuring for cleaner code.
+- Use `readonly` modifier for immutability if needed:
+  const point: readonly [number, number] = [1, 2];
+
+=====================
+11. CONCLUSION
+=====================
+Tuples in TypeScript offer a powerful way to handle structured, ordered, and typed data. They're particularly useful for function returns and small fixed-structure data types.
+
+Understanding tuples can help you write safer, more maintainable code in TypeScript and gives you an edge in interviews.
+
+=====================
+END OF NOTES
+=====================
