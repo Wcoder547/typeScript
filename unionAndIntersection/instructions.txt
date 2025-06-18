@@ -1,0 +1,176 @@
+==========================================
+📘 TypeScript: Union and Intersection Types
+==========================================
+
+📌 1. What are Union and Intersection Types?
+
+➡ Union Type:
+- A Union type describes a value that can be one of several types.
+- It allows flexibility by accepting multiple possible types.
+- Syntax: `type A = string | number`
+
+➡ Intersection Type:
+- An Intersection type combines multiple types into one.
+- The resulting type has all the properties of the intersected types.
+- Syntax: `type A = Type1 & Type2`
+
+----------------------------------------------------
+📌 2. Why Are They Important? (Study & Interview POV)
+
+✅ Union Types:
+- Handle multiple input types in a function.
+- Create flexible API definitions.
+- Reduce code duplication.
+
+✅ Intersection Types:
+- Combine multiple interfaces/types for composition.
+- Enforce strict structure by merging types.
+- Useful in scenarios like Redux states, component props, etc.
+
+----------------------------------------------------
+📌 3. Union Type: Syntax & Examples
+
+// Example 1: Basic usage
+type Status = "success" | "error" | "loading";
+
+function handleStatus(status: Status) {
+    if (status === "success") {
+        console.log("Everything is OK!");
+    } else if (status === "error") {
+        console.log("Something went wrong.");
+    } else {
+        console.log("Loading...");
+    }
+}
+
+// Example 2: Accept string or number
+function printId(id: string | number) {
+    console.log("ID:", id);
+}
+
+printId("user123");
+printId(101);
+
+----------------------------------------------------
+📌 4. Intersection Type: Syntax & Examples
+
+// Example 1: Combine multiple interfaces
+interface Person {
+    name: string;
+    age: number;
+}
+
+interface Employee {
+    employeeId: number;
+    department: string;
+}
+
+type EmployeeInfo = Person & Employee;
+
+const emp: EmployeeInfo = {
+    name: "Waseem",
+    age: 21,
+    employeeId: 1001,
+    department: "IT"
+};
+
+console.log(emp);
+
+// Example 2: Using with function parameters
+type WithTimestamps = {
+    createdAt: Date;
+    updatedAt: Date;
+};
+
+type BlogPost = {
+    title: string;
+    content: string;
+};
+
+type CompletePost = BlogPost & WithTimestamps;
+
+function savePost(post: CompletePost) {
+    console.log("Saving post:", post.title, "at", post.createdAt);
+}
+
+----------------------------------------------------
+📌 5. Key Differences (Union vs Intersection)
+
+| Feature        | Union (`|`)                            | Intersection (`&`)                        |
+|----------------|----------------------------------------|--------------------------------------------|
+| Meaning        | A or B (either one)                   | A and B (must have all members)            |
+| Flexibility    | More flexible, allows alternatives    | More strict, merges all requirements       |
+| Use case       | APIs, inputs that accept multiple types| Object merging, enforcing combined props   |
+| Risk           | Must narrow down type before access   | All properties must exist and match types  |
+
+----------------------------------------------------
+📌 6. Interview Questions You Might Be Asked:
+
+❓ What is a union type in TypeScript?
+❓ How does intersection type differ from union type?
+❓ When should you use `|` vs `&`?
+❓ Can a variable be both a string and number? Why or why not?
+❓ Give a real-world use case of intersection types in React or Redux.
+
+----------------------------------------------------
+📌 7. Advanced Notes (Bonus)
+
+✅ Type Narrowing:
+- TypeScript uses **type guards** to narrow union types.
+```ts
+function process(value: string | number) {
+    if (typeof value === "string") {
+        console.log(value.toUpperCase());
+    } else {
+        console.log(value.toFixed(2));
+    }
+}
+````
+
+✅ Discriminated Unions:
+
+```ts
+type Shape =
+    | { kind: "circle"; radius: number }
+    | { kind: "square"; side: number };
+
+function area(shape: Shape) {
+    switch (shape.kind) {
+        case "circle":
+            return Math.PI * shape.radius ** 2;
+        case "square":
+            return shape.side ** 2;
+    }
+}
+```
+
+✅ Combining Union and Intersection:
+
+```ts
+type Admin = { role: "admin"; access: string[] };
+type User = { name: string };
+
+type AdminUser = Admin & User;
+
+const user1: AdminUser = {
+    role: "admin",
+    access: ["dashboard", "settings"],
+    name: "Malik"
+};
+```
+
+---
+
+📌 8. Final Tips:
+
+✔ Use unions when something can be multiple options.
+✔ Use intersections when something must satisfy multiple rules.
+✔ Use type narrowing or `in`, `typeof`, or `instanceof` to safely handle unions.
+✔ Think of union as "OR", and intersection as "AND".
+
+```
+
+---
+
+Let me know if you also want a `.pdf` or `.docx` version for cleaner formatting.
+```

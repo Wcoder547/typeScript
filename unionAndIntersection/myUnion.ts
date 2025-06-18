@@ -46,3 +46,36 @@ let pi: 3.14 = 3.14;
 let seatAllotment: "aisle " | "middle" | "window";
 seatAllotment = "window";
 // seatAllotment = "crew";
+
+type Status = "success" | "error" | "loading";
+
+function handleStatus(status: Status) {
+  if (status === "success") {
+    console.log("Everything is OK!");
+  } else if (status === "error") {
+    console.log("Something went wrong.");
+  } else {
+    console.log("Loading...");
+  }
+}
+
+interface Person {
+  name: string;
+  age: number;
+}
+
+interface Employee {
+  employeeId: number;
+  department: string;
+}
+
+type EmployeeInfo = Person & Employee;
+
+const emp: EmployeeInfo = {
+  name: "Waseem",
+  age: 21,
+  employeeId: 1001,
+  department: "IT",
+};
+
+console.log(emp);
